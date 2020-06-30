@@ -3,6 +3,10 @@
 
 A flutter plugin to play custom global animations in your application.
 
+## Example
+
+![Example](example/example.gif)
+
 ## Usage
 
 ### Import

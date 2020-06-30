@@ -1,6 +1,6 @@
 name: flutter_global_animations
 description: A flutter plugin to play custom global animations in your application.
-version: 0.1.0
+version: 0.1.1
 repository: https://github.com/jonasroussel/flutter_global_animations
 homepage: https://github.com/jonasroussel/flutter_global_animations#readme
 
