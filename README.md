@@ -5,7 +5,7 @@ A flutter plugin to play custom global animations in your application.
 
 ## Example
 
-![Example](example/example.gif)
+![Example](https://raw.githubusercontent.com/jonasroussel/flutter_global_animations/master/example/example.gif)
 
 ## Usage
 
