@@ -121,7 +121,8 @@ class IconReaction extends AnimationModel {
   AnimationController createController(TickerProvider vsync) {
     AnimationController controller = super.createController(vsync);
 
-    _fadeCurve = CurvedAnimation(parent: controller, curve: Cubic(0.9, 0.0, 1.0, 1.0));
+    _fadeCurve =
+        CurvedAnimation(parent: controller, curve: Cubic(0.9, 0.0, 1.0, 1.0));
     _posCurve = CurvedAnimation(parent: controller, curve: Curves.easeOut);
 
     return controller;

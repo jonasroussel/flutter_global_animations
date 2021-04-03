@@ -9,7 +9,7 @@ class Animations extends ChangeNotifier {
 
   final TickerProvider _vsync;
 
-  List<AnimationModel> _animations = List();
+  final List<AnimationModel> _animations = [];
 
   void spawn(AnimationModel animation) {
     final controller = animation.createController(_vsync);
@@ -26,12 +26,15 @@ class Animations extends ChangeNotifier {
     _animations.add(animation..start());
   }
 
-  List<Widget> render() => _animations.map((anim) => anim.buildEntities()).expand((pair) => pair).toList();
+  List<Widget> render() => _animations
+      .map((anim) => anim.buildEntities())
+      .expand((pair) => pair)
+      .toList();
 
   @override
   void dispose() {
-    _animations?.forEach((anim) {
-      anim?.dispose();
+    _animations.forEach((anim) {
+      anim.dispose();
     });
     super.dispose();
   }
@@ -39,9 +42,9 @@ class Animations extends ChangeNotifier {
 
 abstract class AnimationModel {
   AnimationModel({
-    @required this.position,
-    @required this.region,
-    @required this.duration,
+    required this.position,
+    required this.region,
+    required this.duration,
     this.count = 1,
     this.data,
   });
@@ -52,17 +55,16 @@ abstract class AnimationModel {
   final int count;
   final dynamic data;
 
-  List<Entity> entities;
-  AnimationController controller;
-  Random random;
+  List<Entity>? entities;
+  AnimationController? controller;
 
   AnimationController createController(TickerProvider vsync) {
-    if (controller != null) return controller;
+    if (controller != null) return controller!;
     return (controller = AnimationController(vsync: vsync, duration: duration));
   }
 
   Entity createEntity() {
-    random = Random();
+    final random = Random();
 
     final x = random.nextDouble() * region.width;
     final y = random.nextDouble() * region.height;
@@ -72,11 +74,11 @@ abstract class AnimationModel {
 
   void start() {
     entities = List.generate(count, (index) => createEntity());
-    controller.forward();
+    controller?.forward();
   }
 
   Iterable<Widget> buildEntities() {
-    return entities.map((entity) {
+    return (entities ?? []).map((entity) {
       final pos = getEntityPosition(entity);
 
       return Positioned(
